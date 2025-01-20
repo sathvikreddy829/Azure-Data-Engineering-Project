@@ -1,37 +1,15 @@
 # Azure-Data-Engineering-Project
 
-AZURE DATA ENGINEERING CARS PROJECT :
+Azure Data Engineering Cars project
 
-Copy Data 
-INCREMENTAL loading using lookup activities and dynamic pipeline using Date column
-Lookup activity>>>>>watermark table>>>>>> stored procedure for initial load and incremental load 
-	
-Databricks:
-Databricks >>> secret ID > app registration >>> data lake gen2 (adding role assignment to data lake to read and write data)
-create compute service in data bricks
-Creating silver and gold schema in data bricks meta store 
+Utilizing lookup operations and a dynamic pipeline with a date column, copy data incrementally and then
+Using Databricks To read and write data from Data Lake Gen2, create a silver and gold schema in the Data Bricks Meta Store
+After the data has been transformed using notebooks in data bricks, it is put in the silver layer schema
 
-Data Transformation using split() function and performing / operation on 2 columns to derive the unit price of the product 
-Data writing >>>> silver layer
+Utilizing if/else conditions, create schema for initial and incremental load by reading different relative source columns to use in the dimension table.
+After identifying the source and schema columns as dataframes, join them both, filter out old, non-null values, and then filter out new, null values.
+Use the flag parameter and the monotonically_increasing_id() function to add a surrogate key for the dimension table 
+Use union() to generate the final data frame and add the old and new values.
+establish a dimension table, write data to the gold layer, and  The merge()/Upsert() function (i.e. SCD type1) is used if a table exists already 
 
-Creating dimension models 
-gold dimension model >>>>> creating SCD type 1 table 
-1.create distinct() source columns 
-2.create schema for initial and incremental load by using if condition
-3.Join both the schema and source columns 
-4.filter old values which are not null
-5.filter new values which are null
-6.Add surrogate key by using flag parameter and monotonically_increasing_id()
-7.create final data frame and add old values and new values using union()
-8.writedata to the gold layer and create dimension table >>> If table exists merge()/Upsert() i.e. SCD type1
-
-creating fact table 
-1.Read relative columns from silver table/one big table
-2.create data fames for dimension tables 
-3.join silver data frame with dimension tables and select related columns for fact table by using dimension keys 
-
-Create data workflow using notebooks 
- 
-
-
-
+Utilized dimension keys to align each dimension table with the fact table to craete star schema 
