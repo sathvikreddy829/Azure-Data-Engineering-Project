@@ -12,4 +12,4 @@ Use the flag parameter and the monotonically_increasing_id() function to add a 
 Use union() to generate the final data frame and add the old and new values.
 establish a dimension table, write data to the gold layer, and  The merge()/Upsert() function (i.e. SCD type1) is used if a table exists already 
 
-Utilized dimension keys to align each dimension table with the fact table to craete star schema 
+Utilized dimension keys to align each dimension table with the fact table to create star schema 
